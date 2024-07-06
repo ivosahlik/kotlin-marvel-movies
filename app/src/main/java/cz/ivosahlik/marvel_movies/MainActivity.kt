@@ -12,6 +12,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import cz.ivosahlik.marvel_movies.ui.theme.MarvelmoviesTheme
 
+sealed class Destination(val route: String) {
+    object Library: Destination("library")
+    object Collection: Destination("collection")
+    object CharacterDetail: Destination("character/{characterId}") {
+        fun createRoute(characterId: Int?) = "character/$characterId"
+    }
+}
+
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
