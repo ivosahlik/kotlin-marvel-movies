@@ -1,0 +1,46 @@
+{
+	"info": {
+		"_postman_id": "c378b103-d9c9-409f-9d75-20fcd39dca2b",
+		"name": "Marvel API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27702499"
+	},
+	"item": [
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://gateway.marvel.com/v1/public/comics?ts=1&apikey=<TODO>>&hash=<TODO>",
+					"protocol": "http",
+					"host": [
+						"gateway",
+						"marvel",
+						"com"
+					],
+					"path": [
+						"v1",
+						"public",
+						"comics"
+					],
+					"query": [
+						{
+							"key": "ts",
+							"value": "1"
+						},
+						{
+							"key": "apikey",
+							"value": "<API KEY>"
+						},
+						{
+							"key": "hash",
+							"value": "<HASH timestamp + privateKey + publicKey>"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
