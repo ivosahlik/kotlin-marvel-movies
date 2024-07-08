@@ -3,14 +3,26 @@ package cz.ivosahlik.marvel_movies
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import cz.ivosahlik.marvel_movies.ui.theme.MarvelmoviesTheme
+import cz.ivosahlik.marvel_movies.view.CharacterDetailScreen
+import cz.ivosahlik.marvel_movies.view.CharactersBottomNav
+import cz.ivosahlik.marvel_movies.view.CollectionScreen
+import cz.ivosahlik.marvel_movies.view.LibraryScreen
 
 sealed class Destination(val route: String) {
     object Library: Destination("library")
@@ -30,7 +42,8 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android")
+                    val navController = rememberNavController()
+                    CharacterScaffold(navController = navController)
                 }
             }
         }
@@ -38,17 +51,28 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    MarvelmoviesTheme {
-        Greeting("Android")
+fun CharacterScaffold(navController: NavHostController) {
+    val snackbarHostState = remember { SnackbarHostState() }
+    Scaffold (
+        snackbarHost = { SnackbarHost(snackbarHostState) },
+        bottomBar = { CharactersBottomNav(navController = navController) },
+    ) {
+        Column (
+            modifier = Modifier.padding(it)
+        ) {
+            NavHost(navController = navController,
+                startDestination = Destination.Library.route)
+            {
+                composable(Destination.Library.route) {
+                    LibraryScreen()
+                }
+                composable(Destination.Collection.route) {
+                    CollectionScreen()
+                }
+                composable(Destination.CharacterDetail.route) {
+                    CharacterDetailScreen()
+                }
+            }
+        }
     }
 }

@@ -50,7 +50,7 @@ android {
 }
 
 dependencies {
-
+    // implementation
     implementation("androidx.core:core-ktx:1.13.1")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.3")
     implementation("androidx.activity:activity-compose:1.9.0")
@@ -59,11 +59,23 @@ dependencies {
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
+    implementation("androidx.navigation:navigation-compose:2.5.2")
+
+    // test implementation
     testImplementation("junit:junit:4.13.2")
+
+    // android test implementation
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
     androidTestImplementation(platform("androidx.compose:compose-bom:2023.08.00"))
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
+
+    // debug implementation
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+
+    // implementing Material 3 Bottom Navigation Bar
+    implementation("androidx.compose.ui:ui:1.1.0-beta03")
+    implementation("androidx.compose.material:material:1.1.0-beta03")
+
 }
