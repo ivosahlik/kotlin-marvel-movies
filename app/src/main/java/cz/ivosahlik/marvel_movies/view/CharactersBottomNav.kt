@@ -5,6 +5,8 @@ import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -13,7 +15,10 @@ import cz.ivosahlik.marvel_movies.R
 
 @Composable
 fun CharactersBottomNav(navController: NavHostController) {
-    BottomNavigation {
+    BottomNavigation(
+        backgroundColor = colorResource(id = R.color.gradientDark),
+        contentColor = Color.White
+    ) {
         val navBackStackEntry = navController.currentBackStackEntryAsState()
         val currentDestination = navBackStackEntry.value?.destination
 

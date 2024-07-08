@@ -6,6 +6,8 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.Text
+import androidx.compose.material.TopAppBar
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
@@ -14,6 +16,10 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -54,6 +60,7 @@ class MainActivity : ComponentActivity() {
 fun CharacterScaffold(navController: NavHostController) {
     val snackbarHostState = remember { SnackbarHostState() }
     Scaffold (
+        topBar = { TopBar() },
         snackbarHost = { SnackbarHost(snackbarHostState) },
         bottomBar = { CharactersBottomNav(navController = navController) },
     ) {
@@ -75,4 +82,13 @@ fun CharacterScaffold(navController: NavHostController) {
             }
         }
     }
+}
+
+@Composable
+fun TopBar() {
+    TopAppBar(
+        title = { Text(text = stringResource(R.string.app_name), fontSize = 18.sp) },
+        backgroundColor = colorResource(id = R.color.gradientDark),
+        contentColor = Color.White
+    )
 }
