@@ -49,7 +49,11 @@ android {
     }
 }
 
+var retrofit_version = "2.9.0"
+var hilt_version = "2.43.2"
+
 dependencies {
+
     // implementation
     implementation("androidx.core:core-ktx:1.13.1")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.3")
@@ -78,4 +82,7 @@ dependencies {
     implementation("androidx.compose.ui:ui:1.1.0-beta03")
     implementation("androidx.compose.material:material:1.1.0-beta03")
 
+    // retrofit
+    implementation("com.squareup.retrofit2:retrofit:$retrofit_version")
+    implementation("com.squareup.retrofit2:converter-gson:$retrofit_version")
 }
