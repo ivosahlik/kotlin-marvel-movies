@@ -1,7 +1,12 @@
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
 }
+
+val apikeyProperties = Properties()
+apikeyProperties.load(project.rootProject.file("apikey.properties").reader())
 
 android {
     namespace = "cz.ivosahlik.marvel_movies"
@@ -18,6 +23,9 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+
+        buildConfigField("String", "MARVEL_KEY", apikeyProperties.getProperty("MARVEL_KEY"))
+        buildConfigField("String", "MARVEL_SECRET", apikeyProperties.getProperty("MARVEL_SECRET"))
     }
 
     buildTypes {
@@ -38,6 +46,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
@@ -85,4 +94,7 @@ dependencies {
     // retrofit
     implementation("com.squareup.retrofit2:retrofit:$retrofit_version")
     implementation("com.squareup.retrofit2:converter-gson:$retrofit_version")
+
+    // issue - https://github.com/square/okhttp/issues/5505
+    implementation("com.squareup.okhttp3:logging-interceptor:4.9.3")
 }
