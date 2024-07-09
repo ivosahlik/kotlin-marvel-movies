@@ -1,4 +1,4 @@
-package cz.ivosahlik.marvel_movies.model.api
+package cz.ivosahlik.marvel_movies.api
 
 import cz.ivosahlik.marvel_movies.model.CharactersApiResponse
 import retrofit2.Call
