@@ -3,6 +3,9 @@ import java.util.Properties
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-kapt")
+    // is need se apply in build.gradle.kts and kapt("com.google.dagger:hilt-compiler
+    id("com.google.dagger.hilt.android")
 }
 
 val apikeyProperties = Properties()
@@ -59,7 +62,8 @@ android {
 }
 
 var retrofit_version = "2.9.0"
-var hilt_version = "2.43.2"
+var hilt_version = "2.48"
+var room_version = "2.4.2"
 
 dependencies {
 
@@ -97,4 +101,14 @@ dependencies {
 
     // issue - https://github.com/square/okhttp/issues/5505
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.3")
+
+    // hilt
+    implementation("com.google.dagger:hilt-android:$hilt_version")
+    // added id("kotlin-kapt") plugins
+    kapt("com.google.dagger:hilt-compiler:$hilt_version")
+
+    // room
+    implementation("androidx.room:room-runtime:$room_version")
+    kapt("androidx.room:room-compiler:$room_version")
+    implementation("androidx.room:room-ktx:$room_version")
 }
