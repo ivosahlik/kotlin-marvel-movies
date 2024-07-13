@@ -26,5 +26,4 @@ interface CharacterDao {
 
     @Delete
     fun deleteCharacter(character: DbCharacter)
-
 }
