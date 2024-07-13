@@ -51,8 +51,7 @@ fun LibraryScreen(
         modifier = Modifier
             .fillMaxSize()
             .padding(
-                top = paddingValues.calculateTopPadding(),
-                bottom = paddingValues.calculateBottomPadding()
+                start = 0.dp, top = 10.dp
             ),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -89,7 +88,6 @@ fun LibraryScreen(
                 }
             }
         }
-
     }
 }
 
