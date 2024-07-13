@@ -1,6 +1,5 @@
 package cz.ivosahlik.marvel_movies.model
 
-
 data class CharactersApiResponse(
     val code: String?,
     val status: String?,
