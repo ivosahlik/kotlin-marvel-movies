@@ -61,6 +61,7 @@ android {
     }
 }
 
+var coil_version = "2.1.0"
 var retrofit_version = "2.9.0"
 var hilt_version = "2.48"
 var room_version = "2.4.2"
@@ -111,4 +112,6 @@ dependencies {
     implementation("androidx.room:room-runtime:$room_version")
     kapt("androidx.room:room-compiler:$room_version")
     implementation("androidx.room:room-ktx:$room_version")
+
+    implementation("io.coil-kt:coil-compose:$coil_version")
 }
