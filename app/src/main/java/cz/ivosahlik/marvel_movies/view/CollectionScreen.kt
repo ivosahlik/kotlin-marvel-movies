@@ -11,7 +11,7 @@ fun CollectionScreen(
     paddingValues: PaddingValues
 ) {
     Text(
-        modifier = Modifier.padding(paddingValues.calculateTopPadding()),
+        modifier = Modifier.padding(paddingValues),
         text = "Collection screen"
     )
 }

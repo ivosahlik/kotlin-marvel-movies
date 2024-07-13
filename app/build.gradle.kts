@@ -77,7 +77,8 @@ dependencies {
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
-    implementation("androidx.navigation:navigation-compose:2.5.2")
+    //dependency for the navigation.
+    implementation("androidx.navigation:navigation-compose:2.7.0-rc01")
 
     // test implementation
     testImplementation("junit:junit:4.13.2")
@@ -91,10 +92,6 @@ dependencies {
     // debug implementation
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
-
-    // implementing Material 3 Bottom Navigation Bar
-    implementation("androidx.compose.ui:ui:1.1.0-beta03")
-    implementation("androidx.compose.material:material:1.1.0-beta03")
 
     // retrofit
     implementation("com.squareup.retrofit2:retrofit:$retrofit_version")
