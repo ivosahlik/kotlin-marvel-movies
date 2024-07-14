@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import cz.ivosahlik.marvel_movies.api.MarvelApiRepo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.debounce
@@ -21,11 +22,13 @@ class LibraryApiViewModel @Inject constructor(
     val result = marvelApiRepo.characters
     val queryText = MutableStateFlow("")
     private val queryInput = Channel<String>(Channel.CONFLATED)
+    val characterDetails = marvelApiRepo.characterDetails
 
     init {
         retrieveCharacters()
     }
 
+    @OptIn(FlowPreview::class)
     private fun retrieveCharacters() {
         viewModelScope.launch(Dispatchers.IO) {
             queryInput.receiveAsFlow()

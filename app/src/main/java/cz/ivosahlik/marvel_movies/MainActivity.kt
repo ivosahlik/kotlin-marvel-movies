@@ -1,6 +1,7 @@
 package cz.ivosahlik.marvel_movies
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
@@ -28,6 +29,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.sp
@@ -76,6 +78,7 @@ fun CharacterScaffold(
     navController: NavHostController,
     libraryApiViewModel: LibraryApiViewModel)
 {
+    val ctx = LocalContext.current
     var navigationSelectedItem by remember {
         mutableStateOf(0)
     }
@@ -120,7 +123,17 @@ fun CharacterScaffold(
                 CollectionScreen(paddingValues)
             }
             composable(Destination.CharacterDetail.route) { navBackStackEntry ->
-                CharacterDetailScreen(paddingValues)
+                val id = navBackStackEntry.arguments?.getString("characterId")?.toIntOrNull()
+                if (id == null)
+                    Toast.makeText(ctx, "Character id is required", Toast.LENGTH_SHORT).show()
+                else {
+                    libraryApiViewModel.retrieveSingleCharacter(id)
+                    CharacterDetailScreen(
+                        libraryApiViewModel = libraryApiViewModel,
+                        paddingValues = paddingValues,
+                        navController = navController
+                    )
+                }
             }
         }
     }
