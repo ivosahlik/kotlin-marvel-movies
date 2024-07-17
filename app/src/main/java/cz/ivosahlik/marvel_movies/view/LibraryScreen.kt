@@ -16,6 +16,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -23,6 +24,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -81,6 +83,7 @@ fun LibraryScreen(
                 is NetworkResult.Loading -> {
                     // TODO: issue with material design 3
 //                    CircularProgressIndicator()
+                    CommonProgressSpinner()
                 }
 
                 is NetworkResult.Error -> {
@@ -88,6 +91,20 @@ fun LibraryScreen(
                 }
             }
         }
+    }
+}
+
+@Composable
+fun CommonProgressSpinner() {
+    Row(modifier = Modifier
+        .alpha(0.5f)
+        .background(Color.LightGray)
+        .clickable(enabled = false) {}
+        .fillMaxSize(),
+        horizontalArrangement = Arrangement.Center,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        CircularProgressIndicator()
     }
 }
 
